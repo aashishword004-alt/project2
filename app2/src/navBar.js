@@ -6,7 +6,7 @@ class Navbar extends Component{
         return(   <nav className="navbar navbar-expand-lg navbar-dark sticky-top mb-5">
                 <div className="container-fluid">
                     <a className="navbar-brand fw-bold" href="#">
-                        <i className="bi bi-cart4" /> Shop
+                        <i className="bi bi-cart4" /> Online Shop
                     </a>
                     <button
                         className="navbar-toggler text-white"

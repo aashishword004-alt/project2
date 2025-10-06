@@ -4,11 +4,100 @@ import Footer from "./footer";
 class Home extends Component {
     render() {
         return (<>
-       <Navbar/>
+            <Navbar />
             {/* Main Content */}
             <div className="py-3 text-center">
                 <h1 className="page-heading">✨HOME✨</h1>
             </div>
+            <div className="container-fluid px-0">
+                <div className="row g-0">
+                    <div
+                        className="col-6 col-md-4 col-lg-2 border-start border-end wow fadeInUp"
+                        data-wow-delay="0.1s"
+                    >
+                        <div className="p-4">
+                            <div className="d-inline-flex align-items-center">
+                                <i className="fa fa-sync-alt fa-2x text-primary" />
+                                <div className="ms-4">
+                                    <h6 className="text-uppercase mb-2">Free Return</h6>
+                                    <p className="mb-0">30 days money back guarantee!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-6 col-md-4 col-lg-2 border-end wow fadeInUp"
+                        data-wow-delay="0.2s"
+                    >
+                        <div className="p-4">
+                            <div className="d-flex align-items-center">
+                                <i className="fab fa-telegram-plane fa-2x text-primary" />
+                                <div className="ms-4">
+                                    <h6 className="text-uppercase mb-2">Free Shipping</h6>
+                                    <p className="mb-0">Free shipping on all order</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-6 col-md-4 col-lg-2 border-end wow fadeInUp"
+                        data-wow-delay="0.3s"
+                    >
+                        <div className="p-4">
+                            <div className="d-flex align-items-center">
+                                <i className="fas fa-life-ring fa-2x text-primary" />
+                                <div className="ms-4">
+                                    <h6 className="text-uppercase mb-2">Support 24/7</h6>
+                                    <p className="mb-0">We support online 24 hrs a day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-6 col-md-4 col-lg-2 border-end wow fadeInUp"
+                        data-wow-delay="0.4s"
+                    >
+                        <div className="p-4">
+                            <div className="d-flex align-items-center">
+                                <i className="fas fa-credit-card fa-2x text-primary" />
+                                <div className="ms-4">
+                                    <h6 className="text-uppercase mb-2">Receive Gift Card</h6>
+                                    <p className="mb-0">Recieve gift all over oder $50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-6 col-md-4 col-lg-2 border-end wow fadeInUp"
+                        data-wow-delay="0.5s"
+                    >
+                        <div className="p-4">
+                            <div className="d-flex align-items-center">
+                                <i className="fas fa-lock fa-2x text-primary" />
+                                <div className="ms-4">
+                                    <h6 className="text-uppercase mb-2">Secure Payment</h6>
+                                    <p className="mb-0">We Value Your Security</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-6 col-md-4 col-lg-2 border-end wow fadeInUp"
+                        data-wow-delay="0.6s"
+                    >
+                        <div className="p-4">
+                            <div className="d-flex align-items-center">
+                                <i className="fas fa-blog fa-2x text-primary" />
+                                <div className="ms-4">
+                                    <h6 className="text-uppercase mb-2">Online Service</h6>
+                                    <p className="mb-0">Free return products in 30 days</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div className="container my-4">
                 <div className="row py-5">
                     <div className="col-12 h2 text-center fw-bold text-primary">
@@ -28,7 +117,7 @@ class Home extends Component {
                                 <h4 className="card-title">
                                     <i className="bi bi-tag" /> Name Categorie
                                 </h4>
-                                <p className="card-text">Price: ₹7500</p>
+                               
                             </div>
                         </div>
                     </div>
@@ -60,7 +149,7 @@ class Home extends Component {
                     </div>
                 </div>
                 {/* Footer */}
-              <Footer/>
+                <Footer />
             </div>
         </>
         )

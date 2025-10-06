@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Shop - Users</title>
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: #1a1a2e !important;
+            /* Super dark body background */
+            color: #e0e0e0 !important;
+            /* Slightly dimmed light text for super dark feel */
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Navbar Styling - Super dark, matching card */
+        .navbar {
+            background: #1f1f2f !important;
+        }
+
+        .navbar-brand {
+            color: #e0e0e0 !important;
+        }
+
+        .navbar-toggler {
+            background: #1f1f2f !important;
+            border-color: #2c2c3e !important;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
+        .navbar .nav-link {
+            color: #a0a0a0 !important;
+        }
+
+        .navbar .nav-link:hover {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            border-radius: 30px;
+            transition: 0.03s;
+            color: #e0e0e0 !important;
+        }
+
+        #navbarNav {
+            margin-left: 40%;
+        }
+
+        .footer {
+            background: #1f1f2f !important;
+            /* Super dark card color */
+            color: #a0a0a0 !important;
+            /* Dimmed gray text */
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #2c2c3e;
+        }
+
+        .container-fluid,
+        .row,
+        .col-12 {
+            background: #1a1a2e !important;
+            /* Super dark body match */
+        }
+
+        h1.page-heading {
+            font-size: 3rem;
+            text-align: center;
+            font-weight: bold;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeSlide 1.5s ease-in-out;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table {
+            --bs-table-bg: transparent;
+            --bs-table-color: #e0e0e0;
+            color: #e0e0e0;
+            background: #1f1f2f;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .table thead th {
+            background: linear-gradient(90deg, #2c2c3e, #3a3a4e);
+            color: #e0e0e0;
+            border: none;
+            padding: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #6a11cb;
+        }
+
+        .table tbody tr {
+            background: #1f1f2f;
+            transition: background 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background: #25253a;
+            transform: scale(1.01);
+            box-shadow: 0 2px 10px rgba(106, 17, 203, 0.2);
+        }
+
+        .table tbody tr:nth-of-type(even) {
+            background: #25253a;
+        }
+
+        .table td {
+            border-color: #2c2c3e;
+            padding: 1.2rem;
+            vertical-align: middle;
+            color: #e0e0e0;
+        }
+
+        .table td p {
+            color: #e0e0e0;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Quantity Input Group */
+        .quantity {
+            background: #2c2c3e;
+            border-radius: 8px;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+        }
+
+        .quantity p {
+            margin: 0;
+            font-weight: bold;
+            color: #2575fc;
+        }
+
+        /* Delete Button */
+        .table .btn {
+            background: #2c2c3e !important;
+            border: 2px solid #6a11cb !important;
+            color: #e0e0e0 !important;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .table .btn:hover {
+            background: #6a11cb !important;
+            border-color: #2575fc !important;
+            transform: scale(1.1);
+            box-shadow: 0 2px 10px rgba(106, 17, 203, 0.4);
+        }
+
+        .table .btn i {
+            font-size: 1rem;
+        }
+
+        /* Cart Summary Dark Styling */
+        .cart-summary {
+            background: linear-gradient(145deg, #1f1f2f, #2c2c3e) !important;
+            color: #e0e0e0 !important;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid #3a3a4e;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .cart-summary .display-6 {
+            color: #e0e0e0 !important;
+            font-weight: 700;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-summary h5,
+        .cart-summary p {
+            color: #e0e0e0 !important;
+            font-weight: 600;
+        }
+
+        .cart-summary .border-top,
+        .cart-summary .border-bottom {
+            border-color: #3a3a4e !important;
+            background: #25253a;
+        }
+
+        .cart-summary .py-4 {
+            padding: 1.5rem !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Horizontal Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark  sticky-top mb-5">
+
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-cart4"></i> Shop</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="home.html"><i class="bi bi-house-fill"></i>
+                            HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html"><i class="bi bi-bag"></i>
+                            Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html"><i class="bi bi-box-seam-fill"></i>
+                            Products</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="admin_users.html"><i class="bi bi-person"></i> Users</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="admin_orders.html"><i
+                                class="bi bi-cart-check-fill"></i>Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="change_password.html"><i class="bi bi-key"></i>
+                            Change Password</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Login.html"><i class="bi bi-box-arrow-in-right"></i>
+                            Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class=" py-3">
+        <h1 class="page-heading">✨Cart✨</h1>
+    </div>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <p class="mb-0 py-4">Apple iPad Mini</p>
+                            </th>
+
+                            <td>
+                                <p class="mb-0 py-4">2.99 $</p>
+                            </td>
+                            <td>
+                                <div class="input-group quantity py-4">
+                                    <p>1</p>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mb-0 py-4">2.99 $</p>
+                            </td>
+                            <td class="py-4">
+                                <button class="btn btn-md rounded-circle bg-light border">
+                                    <i class="fa fa-times text-danger"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <div class="cart-summary rounded">
+                    <div class="p-4">
+                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                        <div class="d-flex justify-content-between mb-4">
+                            <h5 class="mb-0 me-4">Subtotal:</h5>
+                            <p class="mb-0">$96.00</p>
+                        </div>
+                    </div>
+                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                        <p class="mb-0 pe-4">$99.00</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-light py-3 mt-5 border-top">
+        <div class="container text-center">
+            <p class="mb-0">&copy; MY Shop| Ashish Parmar</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
