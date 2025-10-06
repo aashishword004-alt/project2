@@ -23,6 +23,10 @@ function MYapp() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/changepassword" element={<ChangePassword />} />
+        
+        
+        {/* 404 Pandding */}
+        {/* <Route path="*" element={< />} /> */}
       </Routes>
     </BrowserRouter>
   );
