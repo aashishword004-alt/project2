@@ -1,13 +1,14 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component{
     render()
     {
         return(   <nav className="navbar navbar-expand-lg navbar-dark sticky-top mb-5">
                 <div className="container-fluid">
-                    <a className="navbar-brand fw-bold" href="#">
+                    <Link className="navbar-brand fw-bold" to="#">
                         <i className="bi bi-cart4" /> Online Shop
-                    </a>
+                    </Link>
                     <button
                         className="navbar-toggler text-white"
                         type="button"
@@ -22,39 +23,39 @@ class Navbar extends Component{
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto text-center">
                             <li className="nav-item">
-                                <a className="nav-link active" href="home.html">
+                                <Link className="nav-link active" to="/">
                                     <i className="bi bi-house-fill" /> HOME
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="category.html">
+                                <Link className="nav-link" to="/categorys">
                                     <i className="bi bi-bag" /> Categories
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="products.html">
+                                <Link className="nav-link" to="/products">
                                     <i className="bi bi-box-seam-fill" /> Products
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="admin_orders.html">
+                                <Link className="nav-link" to="/cart">
                                     <i className="bi bi-cart-check-fill" /> Cart
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="chekeout.html">
+                                <Link className="nav-link" to="/checkout">
                                     <i className="bi bi-bag-check" /> Checkout
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="admin_change_password.html">
+                                <Link className="nav-link" to="/changepassword">
                                     <i className="bi bi-key" /> Change Password
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="Login.html">
+                                <Link className="nav-link" to="/login">
                                     <i className="bi bi-box-arrow-in-right" /> Logout
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
