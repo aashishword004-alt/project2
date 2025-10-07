@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 
 class Products extends Component {
     render() {
@@ -21,12 +22,12 @@ class Products extends Component {
                                     className="card-img-top"
                                 />
                                 <div className="card-body">
-                                    <a href="">
+                                    <Link to="/viewproduct">
                                         <h4 className="card-title">
                                             <i className="bi bi-tag" />
-                                            Name Product{" "}
+                                            Name Product
                                         </h4>
-                                    </a>
+                                    </Link>
                                     <p className="card-text">Price: ₹7500</p>
                                     <div>
                                         <div className="div">

@@ -10,7 +10,7 @@ import ViewProduct from './viewproduct';
 import Cart from './cart'; 
 import Checkout from './checkout';
 import ChangePassword from './changepassword';
-
+import Registration from './registration';
 function MYapp() {
   return (
     <BrowserRouter>
@@ -23,6 +23,7 @@ function MYapp() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/changepassword" element={<ChangePassword />} />
+        <Route path="/registration" element={<Registration />} />
         
         
         {/* 404 Pandding */}
