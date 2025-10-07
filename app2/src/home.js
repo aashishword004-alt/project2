@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
     render() {
@@ -8,7 +9,7 @@ class Home extends Component {
             <>
 
 
-                <Navbar/>
+                <Navbar />
 
                 <div className="py-3 text-center">
                     <h1 className="page-heading">✨HOME✨</h1>
@@ -145,9 +146,13 @@ class Home extends Component {
                                     alt="Product"
                                 />
                                 <div className="card-body text-center">
-                                    <h4 className="card-title">
-                                        <i className="bi bi-tag" /> Product Name
-                                    </h4>
+                                    <Link to="/viewproduct">
+
+                                        <h4 className="card-title">
+                                            <i className="bi bi-tag" /> Product Name
+                                        </h4>
+                                    </Link>
+
                                     <p className="card-text">Price: ₹7500</p>
                                     <button className="btn btn-primary w-100">Add to Cart</button>
                                 </div>
@@ -155,7 +160,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer/>
+                <Footer />
 
             </>
         );
