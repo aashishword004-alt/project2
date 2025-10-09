@@ -2,8 +2,82 @@ import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Home extends Component {
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            categories: [],
+            product:[]
+
+        }
+    }
+
+    
+    componentDidMount() {
+
+
+       // this is product 
+       axios({
+        url:"https://theeasylearnacademy.com/shop/ws/product.php",
+        method:"get",
+        responseType:"json"
+       }).then((response) => {
+            console.log(response.data);
+            let error = response.data[0]["error"];
+            if (error !== "no") {
+                alert(error)
+            }
+            else {
+                let total = response.data[1][2];
+                if (total === 0) {
+                    alert("Product not found ");
+                }
+                else {
+                    response.data.splice(0, 2);
+                    this.setState({
+                        product: response.data
+                    })
+                    console.log(response.data);
+                }
+            }
+        }).catch((error) =>{
+
+        })
+
+        // this is Category
+        axios({
+            url: "https://theeasylearnacademy.com/shop/ws/category.php",
+            method: "get",
+            responseType: "json"
+        }).then((response) => {
+            console.log(response.data);
+            let error = response.data[0]["error"];
+            if (error !== "no") {
+                alert(error);
+            }
+            else {
+                let total = response.data[1]["total"];
+                if (total === 0) {
+                    alert("Category not found");
+                }
+                else {
+                    response.data.splice(0, 2);
+                    this.setState({
+                        categories: response.data
+                    })
+                    console.log(response.data);
+                    // console.log(response.data);
+                }
+            }
+
+        }).catch(() => {
+
+        })
+    }
     render() {
         return (
             <>
@@ -106,60 +180,60 @@ class Home extends Component {
 
 
                 {/* Categories */}
-                <div className="container my-4">
-                    <div className="row py-5">
-                        <div className="col-12 h2 text-center fw-bold text-primary">
-                            Categories
-                        </div>
-                    </div>
+                <div className="py-3 text-center">
+                    <h1 className="page-heading">✨CATEGORIES✨</h1>
+                </div>
 
+                <div className="container mt-4">
                     <div className="row g-4">
-                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div className="card shadow border-0 h-100">
-                                <img
-                                    src="theme/img/Login Page 3D Icon - Free Download People 3D Icons _ IconScout.jpeg"
-                                    className="card-img-top img-fluid"
-                                    alt="Category"
-                                />
-                                <div className="card-body text-center">
-                                    <h4 className="card-title">
-                                        <i className="bi bi-tag" /> Category Name
-                                    </h4>
+                        {this.state.categories.map((item) => (
+                            <div key={item.id} className="col-4 col-sm-6 col-md-4 col-lg-3">
+                                <div className="card shadow border-0 h-100">
+                                    <img
+                                        src={"https://theeasylearnacademy.com/shop/images/category/" + item.photo}
+                                        className="card-img-top img-fluid"
+                                        alt={item.title}
+                                    />
+                                    <div className="card-body text-center">
+                                        <h4 className="card-title">{item.title}</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* Products */}
-                    <div className="row py-5">
-                        <div className="col-12 h2 text-center fw-bold text-primary">
-                            Products
-                        </div>
-                    </div>
-
-                    <div className="row g-4">
-                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div className="card shadow border-0 h-100">
-                                <img
-                                    src="theme/img/Login Page 3D Icon - Free Download People 3D Icons _ IconScout.jpeg"
-                                    className="card-img-top img-fluid"
-                                    alt="Product"
-                                />
-                                <div className="card-body text-center">
-                                    <Link to="/viewproduct">
-
-                                        <h4 className="card-title">
-                                            <i className="bi bi-tag" /> Product Name
-                                        </h4>
-                                    </Link>
-
-                                    <p className="card-text">Price: ₹7500</p>
-                                    <button className="btn btn-primary w-100">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
+
+
+                {/* Products */}
+                 <div className="py-3 text-center">
+                    <h1 className="page-heading">✨PRODUCTS✨</h1>
+                </div>
+
+                <div className="container mt-4">
+                    <div className="row g-4">
+                           {this.state.product.map((item) => (
+                                <div className="col-md-3">
+                                    <div className="card shadow border-0 category-card">
+                                        <img src={"https://theeasylearnacademy.com/shop/images/product/" + item.photo} className="card-img-top" />
+                                        <div className="card-body">
+                                            <Link to="/viewproduct">
+                                                <h4 className="card-title">
+                                                    <i className="bi bi-tag" />
+                                                    {item.title}
+                                                </h4>
+                                                </Link>
+                                                 <h6>
+                                                    {item.categorytitle}
+                                                </h6>
+                                            <p className="card-text">Price: ₹{item.price}</p>
+                                            <button className="btn btn-primary">Add Cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+
                 <Footer />
 
             </>
