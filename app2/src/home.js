@@ -14,7 +14,6 @@ class Home extends Component {
         super(props);
         this.state = {
             categories: [],
-            product:[]
 
         }
     }
@@ -23,33 +22,7 @@ class Home extends Component {
     componentDidMount() {
 
 
-       // this is product 
-       axios({
-        url: getBaseUrl() + "product.php",
-        method:"get",
-        responseType:"json"
-       }).then((response) => {
-            console.log(response.data);
-            let error = response.data[0]["error"];
-            if (error !== "no") {
-                alert(error)
-            }
-            else {
-                let total = response.data[1][2];
-                if (total === 0) {
-                    alert("Product not found ");
-                }
-                else {
-                    response.data.splice(0, 2);
-                    this.setState({
-                        product: response.data
-                    })
-                    console.log(response.data);
-                }
-            }
-        }).catch((error) =>{
-
-        })
+     
 
         // this is Category
         axios({
@@ -194,6 +167,7 @@ class Home extends Component {
                 </div>
 
                 <div className="container mt-4">
+                    <Link to={""}>
                     <div className="row g-4">
                         {this.state.categories.map((item) => (
                             <div key={item.id} className="col-4 col-sm-6 col-md-4 col-lg-3">
@@ -210,38 +184,12 @@ class Home extends Component {
                             </div>
                         ))}
                     </div>
+                    </Link>
                 </div>
 
 
                 {/* Products */}
-                 <div className="py-3 text-center">
-                    <h1 className="page-heading">✨PRODUCTS✨</h1>
-                </div>
 
-                <div className="container mt-4">
-                    <div className="row g-4">
-                           {this.state.product.map((item) => (
-                                <div className="col-md-3">
-                                    <div className="card shadow border-0 category-card">
-                                        <img src={  getImageUrl() + "product/" + item.photo} className="card-img-top" />
-                                        <div className="card-body">
-                                            <Link to="/viewproduct">
-                                                <h4 className="card-title">
-                                                    <i className="bi bi-tag" />
-                                                    {item.title}
-                                                </h4>
-                                                </Link>
-                                                 <h6>
-                                                    {item.categorytitle}
-                                                </h6>
-                                            <p className="card-text">Price: ₹{item.price}</p>
-                                            <button className="btn btn-primary">Add Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                    </div>
-                </div>
 
                 <Footer />
 

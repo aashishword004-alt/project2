@@ -2,6 +2,7 @@ import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
 import axios from "axios";
+import { getBaseUrl, getImageUrl } from "./basurl";
 
 class Category extends Component {
      constructor(props) {
@@ -14,7 +15,7 @@ class Category extends Component {
 
 
      componentDidMount() {
-        let apiAdrres = "https://theeasylearnacademy.com/shop/ws/category.php";
+        let apiAdrres =  getBaseUrl() + "category.php";
         axios({
             url: apiAdrres,
             method: "get",
@@ -57,7 +58,7 @@ class Category extends Component {
                             <div key={item.id} className="col-4 col-sm-6 col-md-4 col-lg-3">
                                 <div className="card shadow border-0 h-100">
                                     <img
-                                        src={"https://theeasylearnacademy.com/shop/images/category/" + item.photo}
+                                        src={ getImageUrl ()+ "category/" + item.photo}
                                         className="card-img-top img-fluid"
                                         alt={item.title}
                                     />

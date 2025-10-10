@@ -2,84 +2,147 @@ import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
 
+
 export default class Chackout extends Component {
   render() {
     return (<>
       <Navbar />
-      <div className="py-3 text-center">
-        <h1 className="page-heading">✨Checkout✨</h1>
-        <div className="container py-5">
-          <form>
-            <div className="row g-5 justify-content-center">
-              <div
-                className="col-md-12 col-lg-6 col-xl-6 wow fadeInUp"
-                data-wow-delay="0.1s"
-              >
-                <div className="row">
-                  <div className="col-md-12 col-lg-6">
-                    <div className="form-item w-100">
-                      <label className="form-label my-3">First Name</label>
-                      <input type="text" className="form-control" required="" />
-                    </div>
+          <div className="container">
+            <div className="row my-5">
+              <div className="col-lg-8 offset-2">
+                <div className="card shadow">
+                  <div className="card-header ">
+                    <h3 className="text-white">Checkout</h3>
                   </div>
-                  <div className="col-md-12 col-lg-6">
-                    <div className="form-item w-100">
-                      <label className="form-label my-3">
-                        Last Name<sup>*</sup>
-                      </label>
-                      <input type="text" className="form-control" required="" />
-                    </div>
+                  <div className="card-body">
+                    <form>
+                      <div className="row g-3">
+                        <div className="col-12">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Full name"
+                            aria-label="Full name"
+                            required
+                            id="fullname"
+                          />
+                        </div>
+
+                        <div className="col-12">
+                          <input
+                            type="number"
+                            className="form-control"
+                            placeholder="Mobile"
+                            aria-label="Mobile"
+                            required
+                            id="mobile"
+                          />
+                        </div>
+
+                        <div className="col-12">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Address Line 1"
+                            required
+                            id="address1"
+                          />
+                        </div>
+
+                        <div className="col-12">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Address Line 2"
+                            required
+                            id="address2"
+                          />
+                        </div>
+
+                        <div className="col-12">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="City"
+                            required
+                            id="city"
+                          />
+                        </div>
+
+                        <div className="col-12">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Pin Code"
+                            required
+                            id="pincode"
+                          />
+                        </div>
+
+                        <div className="col-12">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Remarks"
+                            required
+                            id="remarks"
+                          />
+                        </div>
+
+                        <div className="col-12">
+                          <span className="fw-bold">Select payment type</span>
+                        </div>
+
+                        <div className="col-12">
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="radioDefault"
+                              id="formRadioDefault"
+                              defaultChecked
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="formRadioDefault"
+                            >
+                              Cash on Delivery
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="radioDefault"
+                              id="formRadioChecked"
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="formRadioChecked"
+                            >
+                              Online money transfer
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="col-12 text-end py-3">
+                          <button
+                             type="raset"
+                            className="btn btn-outline-primary"
+                          >
+                            Cancel
+                          </button>
+                          <button className="btn btn-primary" type="submit">
+                            Place Order
+                          </button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
-                <div className="form-item">
-                  <label className="form-label my-3">
-                    Address <sup>*</sup>
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="House Number Street Name"
-                    required=""
-                  />
-                </div>
-                <div className="form-item">
-                  <label className="form-label my-3">
-                    Town/City<sup>*</sup>
-                  </label>
-                  <input type="text" className="form-control" required="" />
-                </div>
-                <div className="form-item">
-                  <label className="form-label my-3">
-                    Country<sup>*</sup>
-                  </label>
-                  <input type="text" className="form-control" />
-                </div>
-                <div className="form-item">
-                  <label className="form-label my-3">Postcode</label>
-                  <input type="text" className="form-control" required="" />
-                </div>
-                <div className="form-item">
-                  <label className="form-label my-3">
-                    Mobile<sup>*</sup>
-                  </label>
-                  <input type="tel" className="form-control" required="" />
-                </div>
-                <div className="form-item">
-                  <label className="form-label my-3">
-                    Email Address<sup>*</sup>
-                  </label>
-                  <input type="email" className="form-control" required="" />
-                </div>
-                <div className="form-item py-5" align="center">
-                  <button className="btn btn-primary"> Submit</button>
-                </div>
-                <hr />
               </div>
             </div>
-          </form>
-        </div>
-
-      </div>
+          </div>
       <Footer />
     </>)
   }

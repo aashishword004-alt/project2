@@ -29,7 +29,7 @@ class Navbar extends Component{
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/categorys">
-                                    <i className="bi bi-bag" /> Categories
+                                    <i className="bi bi-bag" /> Shop
                                 </Link>
                             </li>
                             <li className="nav-item">
