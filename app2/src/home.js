@@ -3,6 +3,9 @@ import Navbar from "./navBar";
 import Footer from "./footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { getBaseUrl, getImageUrl } from "./basurl";
+import { Showerror, Showmessage } from "./message";
+import { ToastContainer } from "react-toastify";
 
 class Home extends Component {
 
@@ -22,7 +25,7 @@ class Home extends Component {
 
        // this is product 
        axios({
-        url:"https://theeasylearnacademy.com/shop/ws/product.php",
+        url: getBaseUrl() + "product.php",
         method:"get",
         responseType:"json"
        }).then((response) => {
@@ -50,7 +53,7 @@ class Home extends Component {
 
         // this is Category
         axios({
-            url: "https://theeasylearnacademy.com/shop/ws/category.php",
+            url:  getBaseUrl() + "category.php",
             method: "get",
             responseType: "json"
         }).then((response) => {
@@ -66,6 +69,7 @@ class Home extends Component {
                 }
                 else {
                     response.data.splice(0, 2);
+                    Showmessage("Welcome")
                     this.setState({
                         categories: response.data
                     })
@@ -74,7 +78,11 @@ class Home extends Component {
                 }
             }
 
-        }).catch(() => {
+        }).catch((error) => {
+            if(error.code == "ERR_NETWORK")
+            {
+                Showerror("You Are offline Either Server Busy");
+            }
 
         })
     }
@@ -84,6 +92,7 @@ class Home extends Component {
 
 
                 <Navbar />
+                <ToastContainer/>
 
                 <div className="py-3 text-center">
                     <h1 className="page-heading">✨HOME✨</h1>
@@ -190,7 +199,7 @@ class Home extends Component {
                             <div key={item.id} className="col-4 col-sm-6 col-md-4 col-lg-3">
                                 <div className="card shadow border-0 h-100">
                                     <img
-                                        src={"https://theeasylearnacademy.com/shop/images/category/" + item.photo}
+                                        src={ getImageUrl() + "category/" + item.photo}
                                         className="card-img-top img-fluid"
                                         alt={item.title}
                                     />
@@ -214,7 +223,7 @@ class Home extends Component {
                            {this.state.product.map((item) => (
                                 <div className="col-md-3">
                                     <div className="card shadow border-0 category-card">
-                                        <img src={"https://theeasylearnacademy.com/shop/images/product/" + item.photo} className="card-img-top" />
+                                        <img src={  getImageUrl() + "product/" + item.photo} className="card-img-top" />
                                         <div className="card-body">
                                             <Link to="/viewproduct">
                                                 <h4 className="card-title">
