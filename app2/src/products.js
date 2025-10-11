@@ -3,7 +3,6 @@ import Navbar from "./navBar";
 import Footer from "./footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import WithHook from "./hoc";
 
 import { getBaseUrl, getImageUrl } from "./basurl";
@@ -65,7 +64,7 @@ class Products extends Component {
                                     <div className="card shadow border-0 category-card">
                                         <img src={getImageUrl() + "product/" + item.photo} className="card-img-top" />
                                         <div className="card-body">
-                                            <Link to="/viewproduct">
+                                            <Link to={"/viewproduct/" + item.id} >
                                                 <h4 className="card-title">
                                                     <i className="bi bi-tag" />
                                                     {item.title}

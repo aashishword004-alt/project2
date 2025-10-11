@@ -1,8 +1,90 @@
 import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
+import { getBaseUrl, getImageUrl } from "./basurl";
+import WithHook from "./hoc";
+import axios from "axios";
+import { Showerror, Showmessage } from "./message";
+import { ToastContainer } from "react-toastify";
 
 class ViewProduct extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            product: []
+        }
+    }
+
+
+    componentDidMount() {
+        let { productid } = this.props.params;
+        let apiaddres = getBaseUrl() + "product.php?productid=" + productid;
+        axios({
+            url: apiaddres,
+            method: "get",
+            responseType: "json"
+        }).then((response) => {
+            // console.log(response.data)
+            let error = response.data[0]['error'];
+            if (error !== "no") {
+                Showerror(error);
+            }
+            else {
+                let total = response.data[1]["total"];
+                if (total === 0) {
+                    Showmessage("Product not Found")
+                }
+                else {
+                    response.data.splice(0, 2);
+                    this.setState({
+                        product: response.data
+                    })
+                }
+            }
+
+        }).catch((error) => {
+            if (error.code === "ERR_NETWORK")
+
+
+                Showerror("You are Offline Either Server Busy");
+
+        })
+    }
+
+    display = (item) => {
+        return (
+            <div className="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
+                <ToastContainer/>
+                <div className="row g-4 single-product">
+                    <div className="col-xl-6">
+                        <div className="single-carousel owl-carousel">
+                            <div className="single-item">
+                                <div className="single-inner bg-light rounded">
+                                    <img
+                                        src={getImageUrl() + "product/" + item.photo}
+                                        className="img-fluid rounded"
+                                        alt="Image"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-xl-6">
+                        <h4 className="fw-bold mb-3">{item.title}</h4>
+                        <h5 className="fw-bold mb-3">{item.price} $</h5>
+                        <div className="mb-3"></div>
+                        <div className="d-flex flex-column mb-3">
+                            <small>Stock: {item.stock}</small>
+                            <small>Weight: {item.weight}</small>
+                            <small>Size: {item.size}</small>
+                        </div>
+                        <p className="mb-4">{item.detail}</p>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     render() {
         return (<>
             <Navbar />
@@ -12,55 +94,13 @@ class ViewProduct extends Component {
             {/* Main Content */}
             <div className="container py-5">
                 <div className="row g-4">
-                    <div className="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
-                        <div className="row g-4 single-product">
-                            <div className="col-xl-6">
-                                <div className="single-carousel owl-carousel">
-                                    <div className="single-item">
-                                        <div className="single-inner bg-light rounded">
-                                            <img
-                                                src="theme/img/Login Page 3D Icon - Free Download People 3D Icons _ IconScout.jpeg"
-                                                className="img-fluid rounded"
-                                                alt="Image"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-6">
-                                <h4 className="fw-bold mb-3">Smart Camera</h4>
-                                <p className="mb-3">Category: Electronics</p>
-                                <h5 className="fw-bold mb-3">3,35 $</h5>
-                                <div className="mb-3"></div>
-                                <div className="d-flex flex-column mb-3">
-                                    <small>Product SKU: N/A</small>
-                                    <small>
-                                        Available:{" "}
-                                        <strong className="text-primary">20 items in stock</strong>
-                                    </small>
-                                </div>
-                                <p className="mb-4">
-                                    The generated Lorem Ipsum is therefore always free from repetition
-                                    injected humour, or non-characteristic words etc.
-                                </p>
-                                <p className="mb-4">
-                                    Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock
-                                    flounder; chain pickerel hatchetfish, pencilfish snailfish
-                                </p>
-                                <div
-                                    className="input-group quantity mb-5"
-                                    style={{ width: 100 }}
-                                ></div>
-                            </div>
-                        </div>
-                    </div>
+                    {this.state.product.map((item) => this.display(item))}
+
                 </div>
             </div>
-
-
             <Footer />
 
         </>)
     }
 }
-export default ViewProduct;
+export default WithHook(ViewProduct);

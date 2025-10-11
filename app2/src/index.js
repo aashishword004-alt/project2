@@ -21,7 +21,7 @@ function MYapp() {
         <Route path="/products/:categoryid" element={<Products />} />
         
         <Route path="/login" element={<Login />} />      
-        <Route path="/viewproduct" element={<ViewProduct />} />
+        <Route path="/viewproduct/:productid" element={<ViewProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/changepassword" element={<ChangePassword />} />
