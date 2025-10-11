@@ -42,7 +42,7 @@ class Home extends Component {
                 }
                 else {
                     response.data.splice(0, 2);
-                    Showmessage("Welcome")
+                    Showmessage("Welcome 🤗 ")
                     this.setState({
                         categories: response.data
                     })
