@@ -167,10 +167,10 @@ class Home extends Component {
                 </div>
 
                 <div className="container mt-4">
-                    <Link to={""}>
                     <div className="row g-4">
                         {this.state.categories.map((item) => (
                             <div key={item.id} className="col-4 col-sm-6 col-md-4 col-lg-3">
+                                <Link to={"/products/" + item.id}>
                                 <div className="card shadow border-0 h-100">
                                     <img
                                         src={ getImageUrl() + "category/" + item.photo}
@@ -181,10 +181,11 @@ class Home extends Component {
                                         <h4 className="card-title">{item.title}</h4>
                                     </div>
                                 </div>
+                                </Link>
                             </div>
                         ))}
                     </div>
-                    </Link>
+                   
                 </div>
 
 

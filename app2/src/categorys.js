@@ -3,6 +3,7 @@ import Navbar from "./navBar";
 import Footer from "./footer";
 import axios from "axios";
 import { getBaseUrl, getImageUrl } from "./basurl";
+import { Link } from "react-router-dom";
 
 class Category extends Component {
      constructor(props) {
@@ -53,10 +54,13 @@ class Category extends Component {
                     <h1 className="page-heading">✨ Categories ✨</h1>
                 </div>
                   <div className="container mt-4">
-                    <div className="row g-4">
+                  
+                           <div className="row g-4">
                         {this.state.categories.map((item) => (
-                            <div key={item.id} className="col-4 col-sm-6 col-md-4 col-lg-3">
-                                <div className="card shadow border-0 h-100">
+
+                            <div className="col-4 col-sm-6 col-md-4 col-lg-3">
+                                <Link to={"/products/" + item.id}>
+                                 <div className="card shadow border-0 h-100">
                                     <img
                                         src={ getImageUrl ()+ "category/" + item.photo}
                                         className="card-img-top img-fluid"
@@ -66,9 +70,12 @@ class Category extends Component {
                                         <h4 className="card-title">{item.title}</h4>
                                     </div>
                                 </div>
+                                </Link>
+                               
                             </div>
                         ))}
                     </div>
+             
                 </div>
                 <Footer/>
             </>

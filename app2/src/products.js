@@ -3,7 +3,10 @@ import Navbar from "./navBar";
 import Footer from "./footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Category from "./categorys";
+import { useParams } from "react-router-dom";
+import WithHook from "./hoc";
+
+import { getBaseUrl, getImageUrl } from "./basurl";
 
 class Products extends Component {
     constructor(props) {
@@ -15,7 +18,8 @@ class Products extends Component {
     }
 
     componentDidMount() {
-        let apiaddres = "https://theeasylearnacademy.com/shop/ws/product.php";
+        let { categoryid } = this.props.params;
+        let apiaddres = getBaseUrl() + "product.php?categoryid=" + categoryid;;
         axios({
             url: apiaddres,
             method: "get",
@@ -59,17 +63,17 @@ class Products extends Component {
                             {this.state.product.map((item) => (
                                 <div className="col-md-3">
                                     <div className="card shadow border-0 category-card">
-                                        <img src={"https://theeasylearnacademy.com/shop/images/product/" + item.photo} className="card-img-top" />
+                                        <img src={getImageUrl() + "product/" + item.photo} className="card-img-top" />
                                         <div className="card-body">
                                             <Link to="/viewproduct">
                                                 <h4 className="card-title">
                                                     <i className="bi bi-tag" />
                                                     {item.title}
                                                 </h4>
-                                                </Link>
-                                                 <h6>
-                                                    {item.categorytitle}
-                                                </h6>
+                                            </Link>
+                                            <h6>
+                                                {item.categorytitle}
+                                            </h6>
                                             <p className="card-text">Price: ₹{item.price}</p>
                                             <button className="btn btn-primary">Add Cart</button>
                                         </div>
@@ -87,4 +91,4 @@ class Products extends Component {
         )
     }
 }
-export default Products;
+export default WithHook(Products);

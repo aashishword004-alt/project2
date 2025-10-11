@@ -32,11 +32,7 @@ class Navbar extends Component{
                                     <i className="bi bi-bag" /> Shop
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/products">
-                                    <i className="bi bi-box-seam-fill" /> Products
-                                </Link>
-                            </li>
+                          
                             <li className="nav-item">
                                 <Link className="nav-link" to="/cart">
                                     <i className="bi bi-cart-check-fill" /> Cart
@@ -59,7 +55,7 @@ class Navbar extends Component{
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/login">
-                                    <i className="bi bi-box-arrow-in-right" /> Logout
+                                    <i className="bi bi-box-arrow-in-right" /> login
                                 </Link>
                             </li>
                         </ul>

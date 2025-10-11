@@ -17,8 +17,10 @@ function MYapp() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorys" element={<Category />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/login" element={<Login />} />
+        {/* Dyanamic Routes  */}
+        <Route path="/products/:categoryid" element={<Products />} />
+        
+        <Route path="/login" element={<Login />} />      
         <Route path="/viewproduct" element={<ViewProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
