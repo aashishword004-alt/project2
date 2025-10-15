@@ -1,10 +1,13 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Navbar extends Component{
-    render()
-    {
-        return(   <nav className="navbar navbar-expand-lg navbar-dark sticky-top mb-5">
+class Navbar extends Component {
+    render() {
+        return (
+
+
+            <nav className="navbar navbar-expand-lg navbar-dark sticky-top mb-5">
+
                 <div className="container-fluid">
                     <div className=" fw-bold h4">
                         <i className="bi bi-cart4" /> Online Shop
@@ -32,7 +35,7 @@ class Navbar extends Component{
                                     <i className="bi bi-bag" /> Shop
                                 </Link>
                             </li>
-                          
+
                             <li className="nav-item">
                                 <Link className="nav-link" to="/cart">
                                     <i className="bi bi-cart-check-fill" /> Cart
