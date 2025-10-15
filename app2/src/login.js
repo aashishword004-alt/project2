@@ -2,33 +2,61 @@ import { Component } from "react";
 import { getBaseUrl } from "./basurl";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
-import { Showerror } from "./message";
+import { Showerror, Showmessage } from "./message";
 import WithHook from "./hoc";
 
 class Login extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: "",
+            password: ""
+        }
+    }
+    updateValue = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
     login = (e) => {
+        e.preventDefault(); // prevent page reload
         let apiaddres = getBaseUrl() + "login.php";
+
+        let form = new FormData();
+        form.append("email", this.state.email);
+        form.append("password", this.state.password);
+
+
+
+
         axios({
             url: apiaddres,
             method: "post",
+            data: form,
             responseType: "json"
         }).then((response) => {
             console.log(response.data);
             let error = response.data[0]["error"];
-            if(error !== "no")
-            {
+            if (error !== "no") {
                 Showerror(error)
             }
-            else{
+            else {
                 let success = response.data[1]["success"];
                 let message = response.data[2]["message"];
 
-                if( success === "yes")
-                    {
-                    //  setTimeout({
-                    //     this.props.navigate("/")
-                    //  },2000)
+                if (success === "yes") {
+
+                 Showmessage("login Succesfully ✅");
+                    setTimeout(() => {
+                        this.props.navigate("/");
+
+                    }, 2000);
+
+                }
+                else {
+                    Showerror(message);
                 }
             }
 
@@ -46,7 +74,7 @@ class Login extends Component {
             <div className=" py-3">
                 <h1 className="page-heading">✨Login✨</h1>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
             <div className="container">
                 <div className="row">
                     <div className="col-6 offset-3">
@@ -60,6 +88,8 @@ class Login extends Component {
                                         <input
                                             type="Email"
                                             name="email"
+                                            value={this.state.email}
+                                            onChange={this.updateValue}
                                             id="email"
                                             className="form-control"
                                             required=""
@@ -71,8 +101,10 @@ class Login extends Component {
                                         </label>
                                         <input
                                             type="password"
-                                            name=""
-                                            id=""
+                                            name="password"
+                                            id="password"
+                                            value={this.state.password}
+                                            onChange={this.updateValue}
                                             className="form-control"
                                             required=""
                                         />
@@ -99,4 +131,4 @@ class Login extends Component {
     }
 }
 
-export default  WithHook(Login);
+export default WithHook(Login);
