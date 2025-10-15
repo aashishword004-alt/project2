@@ -25,7 +25,7 @@ class Registration extends Component {
     }
 
 
-    Ragister = (e) => {
+    ragister = (e) => {
         e.preventDefault()
         let apiaddres = getBaseUrl() + "register.php";
 
@@ -82,7 +82,7 @@ class Registration extends Component {
                         <div className="card shadow-lg border-0 rounded-4">
                             <div className="card-body p-4">
                                 <h3 className="text-center mb-4 text-primary">User Registration</h3>
-                                <form id="registrationForm" onSubmit={this.Ragister}>
+                                <form id="registrationForm" onSubmit={this.ragister}>
                                     <div className="mb-3">
                                         <label className="form-label">Email Address</label>
                                         <input
