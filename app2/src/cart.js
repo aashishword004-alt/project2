@@ -1,8 +1,8 @@
 import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
-
-export default class Cart extends Component
+import WithHook from "./hoc";
+ class Cart extends Component
 {
     render()
     {
@@ -76,3 +76,4 @@ export default class Cart extends Component
         </>)
     }
 }
+export default WithHook(Cart);

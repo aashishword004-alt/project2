@@ -11,6 +11,7 @@ import Cart from './cart';
 import Checkout from './checkout';
 import ChangePassword from './changepassword';
 import Registration from './registration';
+import { CookiesProvider } from 'react-cookie';
 function MYapp() {
   return (
     <BrowserRouter>
@@ -36,4 +37,7 @@ function MYapp() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<MYapp />);
+root.render(<CookiesProvider>
+<MYapp />
+
+</CookiesProvider>);

@@ -1,7 +1,62 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import WithHook from "./hoc";
 
 class Navbar extends Component {
+
+    constructor(props){
+        super(props)
+        
+    }
+    Gestmenu()
+    {
+      if(this.props.cookies['id'] === undefined)
+      {
+        return(<>
+        
+                               
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/registration">
+                                    <i class="bi bi-person-fill-check"></i> Registration
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">
+                                    <i className="bi bi-box-arrow-in-right" /> login
+                                </Link>
+                            </li>
+        </>)
+      }
+    }
+   Usermanu(){
+    if(this.props.cookies['id'] !== undefined)
+    {
+        return(<>
+        
+         <li className="nav-item">
+                                <Link className="nav-link" to="/cart">
+                                    <i className="bi bi-cart-check-fill" /> Cart
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/checkout">
+                                    <i className="bi bi-bag-check" /> Checkout
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/changepassword">
+                                    <i className="bi bi-key" /> Change Password
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">
+                                    <i className="bi bi-box-arrow-in-right" /> login
+                                </Link>
+                            </li>
+        
+        </>)
+    }
+   }
     render() {
         return (
 
@@ -35,36 +90,13 @@ class Navbar extends Component {
                                     <i className="bi bi-bag" /> Shop
                                 </Link>
                             </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/cart">
-                                    <i className="bi bi-cart-check-fill" /> Cart
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/checkout">
-                                    <i className="bi bi-bag-check" /> Checkout
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/changepassword">
-                                    <i className="bi bi-key" /> Change Password
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/registration">
-                                    <i class="bi bi-person-fill-check"></i> Registration
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">
-                                    <i className="bi bi-box-arrow-in-right" /> login
-                                </Link>
-                            </li>
+                           {this.Gestmenu()}
+                           {this.Usermanu()}
+                           
                         </ul>
                     </div>
                 </div>
             </nav>);
     }
 }
-export default Navbar;
+export default WithHook(Navbar);

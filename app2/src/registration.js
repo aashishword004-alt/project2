@@ -7,7 +7,6 @@ import { Showerror, Showmessage } from "./message";
 import WithHook from "./hoc";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
-
 class Registration extends Component {
     constructor(props) {
         super(props);
@@ -71,8 +70,7 @@ class Registration extends Component {
 
     render() {
         return (
-            <>
-                <Navbar />
+            <> 
                 <div className="py-3 text-center">
                     <h1 className="page-heading">✨ Registration ✨</h1>
                 </div>

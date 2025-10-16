@@ -4,6 +4,8 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { Showerror, Showmessage } from "./message";
 import WithHook from "./hoc";
+import { withCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
 
@@ -47,6 +49,8 @@ class Login extends Component {
                 let message = response.data[2]["message"];
 
                 if (success === "yes") {
+                    // crate a Cookies variable 
+                this.props.setCookie("id",response.data[3]['id'])
 
                  Showmessage("login Succesfully ✅");
                     setTimeout(() => {
@@ -117,8 +121,12 @@ class Login extends Component {
                                             Clear
                                         </button>
                                     </div>
-                                    <div align="center" className="mt-3">
-                                        <a href="">Forgot Password</a>
+                                    <div className="col-4" align="center" className="mt-3">
+                                        <Link to={""}>Forgot Password</Link>
+                                    </div>
+                                    <div align="center" className="Col-4">
+                                        <Link to={"/registration"}>NO Account </Link>
+
                                     </div>
                                 </form>
                             </div>
