@@ -8,7 +8,7 @@ class Navbar extends Component {
         super(props)
         
     }
-    Gestmenu()
+    Gestmenu() // for guest 
     {
       if(this.props.cookies['id'] === undefined)
       {
