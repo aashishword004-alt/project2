@@ -18,11 +18,12 @@ function MYapp() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorys" element={<Category />} />
+
         {/* Dyanamic Routes  */}
         <Route path="/products/:categoryid" element={<Products />} />
+        <Route path="/viewproduct/id/:productid" element={<ViewProduct />} />
         
         <Route path="/login" element={<Login />} />      
-        <Route path="/viewproduct/:productid" element={<ViewProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/changepassword" element={<ChangePassword />} />

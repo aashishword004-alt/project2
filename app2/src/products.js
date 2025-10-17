@@ -6,6 +6,7 @@ import axios from "axios";
 import WithHook from "./hoc";
 
 import { getBaseUrl, getImageUrl } from "./basurl";
+import { Showerror, Showmessage } from "./message";
 
 class Products extends Component {
     constructor(props) {
@@ -14,6 +15,36 @@ class Products extends Component {
         this.state = {
             product: []
         }
+    }
+
+    addcart = (productid) =>{
+        let userid = this.props.cookies["id"];
+        let apiaddress = getBaseUrl() + "add_to_cart.php?productid=" +  productid + "&userid" + userid;
+        console.log(apiaddress)
+        axios({
+            method:"post",
+            responseType:'json',
+            url:apiaddress
+        }).then((response) =>{
+            let error = response.data[0]['error'];
+            if( error !== 'no')
+            {
+                Showerror(error)
+            }
+            else{
+                      let message = response.data[1]['message'];
+                      if(message == "yes" )
+                      {
+                        Showmessage("Add Cart Succefully");
+                    
+                      }
+            }
+        }).catch((error) =>{
+            if(error.code === 'ERR_NETWORK')
+            {
+                Showerror("Your Network is Either Server Busy");
+            }
+        })
     }
 
     componentDidMount() {
@@ -43,7 +74,9 @@ class Products extends Component {
                 }
             }
         }).catch((error) => {
-
+        if(error.code === 'ERR_NETWORK'){
+            Showerror("Network is down Either Sever Busy");
+        }
 
         })
     }
@@ -64,7 +97,7 @@ class Products extends Component {
                                     <div className="card shadow border-0 category-card">
                                         <img src={getImageUrl() + "product/" + item.photo} className="card-img-top" />
                                         <div className="card-body">
-                                            <Link to={"/viewproduct/" + item.id} >
+                                            <Link to={"/viewproduct/id/" + item.id} >
                                                 <h4 className="card-title">
                                                     <i className="bi bi-tag" />
                                                     {item.title}
@@ -74,7 +107,7 @@ class Products extends Component {
                                                 {item.categorytitle}
                                             </h6>
                                             <p className="card-text">Price: ₹{item.price}</p>
-                                            <button className="btn btn-primary">Add Cart</button>
+                                            <button onClick={() =>this.addcart(item.id)} className="btn btn-primary">Add Cart</button>
                                         </div>
                                     </div>
                                 </div>

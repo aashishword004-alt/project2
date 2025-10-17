@@ -2,8 +2,21 @@ import { Component } from "react";
 import Navbar from "./navBar";
 import Footer from "./footer";
 import WithHook from "./hoc";
- class Cart extends Component
-{
+import { getBaseUrl } from "./basurl";
+import axios from "axios";
+ class Cart extends Component{
+
+    componentDidMount(){
+        let id = this.props.cookies['id'];
+        let apiadress = getBaseUrl() + "cart.php?userid=" + id;
+        axios({
+            responseType:'json',
+            method:"get",
+            url:apiadress
+        })
+
+    }
+
     render()
     {
         return(<>
@@ -63,6 +76,13 @@ import WithHook from "./hoc";
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                         <h5 class="mb-0 ps-4 me-4">Total</h5>
                         <p class="mb-0 pe-4">$99.00</p>
+                    </div>
+                    <div align="center">
+                        <a href="">
+                        <button className="btb btn-primary my-3"> 
+                            Checkout
+                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
